@@ -4,16 +4,9 @@ const personState = {
     deadList: Array(10).fill(0),
 }
 
-const dict = {
-    0: "A", 1: "B", 2: "C", 3: "D", 4: "E", 5: "F", 6: "G", 7: "H", 8: "I", 9: "J",
-}
-
 const people = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 const personContainer = document.querySelector('.person');
 const checkedText = "！"
-let whoKillerIndex = -1;
-let whosubKillerIndex = -1;
-
 
 people.forEach((personName, index) => { 
     const div = document.createElement('div');
@@ -100,7 +93,7 @@ function changeClass(element, classNameA, classNameB){
 function checkPerson(index){
     const target = personState.checkList[index];
     personState.checkList[index] = (target === true) ? false : true;
-    let element = document.getElementById(`${dict[index]}_checked`);
+    let element = document.getElementById(`${people[index]}_checked`);
     element.className = (target === true) ? 'person_checked_before' : 'person_checked_after' ;
     element.textContent = (target === true) ? '' : `${checkedText}`;
 
@@ -109,7 +102,7 @@ function checkPerson(index){
 function changeTakenCard(index){
     const target = personState.takenCardList[index];
     personState.takenCardList[index] = (target === true) ? false : true;
-    let element = document.getElementById(`${dict[index]}_takenCard`);
+    let element = document.getElementById(`${people[index]}_takenCard`);
     if(target === true){
         changeClass(element, 'person_takenCard_after', 'person_takenCard_before');
     } else{
@@ -121,9 +114,9 @@ function changeTakenCard(index){
 function changeAlive(index){
     const target = personState.deadList[index];
     personState.deadList[index] += 1;
-    let element = document.getElementById(`${dict[index]}_deadState`);
-    let deadFillter = document.getElementById(`${dict[index]}_dead_fillter`)
-    let deadMark = document.getElementById(`${dict[index]}_dead_mark`)
+    let element = document.getElementById(`${people[index]}_deadState`);
+    let deadFillter = document.getElementById(`${people[index]}_dead_fillter`)
+    let deadMark = document.getElementById(`${people[index]}_dead_mark`)
 
     console.log(target)
     if (target % 3 === 0){
