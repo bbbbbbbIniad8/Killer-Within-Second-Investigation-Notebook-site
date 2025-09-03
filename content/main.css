@@ -1,0 +1,93 @@
+body{
+    background-color: rgb(226, 226, 226);
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+#content{
+    align-items: center;
+}
+
+#judge-text{
+    white-space: pre-line;
+}
+
+.person{
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    user-select: none;
+
+}
+
+.person_name{
+    position:relative;
+    right: 15px;
+    bottom:15px;
+    font-size: 150%;
+    width: 35px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: aliceblue;
+    border-radius: 30px;
+}
+
+.person_checked_before{
+    background-color: white;
+    color: black;
+    width:fit-content;
+    padding: 2px;
+}
+
+.person_checked_after{
+    background-color: black;
+    color: white;
+    width:fit-content;
+    padding: 2px;
+}
+
+
+:root {
+    --A-color: #f75353; 
+    --B-color: #5356f7;
+    --C-color: #53f7ab;
+    --D-color: #f7b353;
+    --E-color: #f7e953;
+    --F-color: #f753ef;
+    --G-color: #f8ace1;
+    --H-color: #adf753;
+    --I-color: #53d1f7;
+    --J-color: #f77453;
+}
+
+#A { --item-color: var(--A-color); }
+#B { --item-color: var(--B-color); }
+#C { --item-color: var(--C-color); }
+#D { --item-color: var(--D-color); }
+#E { --item-color: var(--E-color); }
+#F { --item-color: var(--F-color); }
+#G { --item-color: var(--G-color); }
+#H { --item-color: var(--H-color); }
+#I { --item-color: var(--I-color); }
+#J { --item-color: var(--J-color); }
+
+.person > div{
+    border:solid 1px black;
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+    
+    background-color: var(--item-color); 
+}
+
+.person > div:hover{
+    border: 1px inset rgb(255, 255, 255);
+}
