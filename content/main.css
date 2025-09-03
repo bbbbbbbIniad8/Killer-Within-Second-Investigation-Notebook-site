@@ -23,7 +23,7 @@ body{
 .person{
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 80%;
+    width: 85%;
     user-select: none;
 
 }
@@ -73,11 +73,66 @@ body{
     padding: 2px;
     left: 85%;
     top: 70%;
-    background-color: rgb(96, 22, 22);
-    color: rgb(220, 218, 218);
+    background-color: rgb(255, 255, 49);
+    font-weight: 900;
+    color: rgb(45, 13, 13);
     text-align: center;
-    border: solid 2px rgb(254, 253, 253);
+    border: solid 2px rgb(26, 26, 26);
     border-radius: 5px;
+}
+
+.person_alive{
+    position: absolute;
+    width: 60px;
+    height: 25px;
+    padding: 2px;
+    left: 85%;
+    top: -5%;
+    background-color: rgb(255, 255, 49);
+    font-weight: 900;
+    color: rgb(45, 13, 13);
+    text-align: center;
+    border: solid 2px rgb(26, 26, 26);
+    border-radius: 5px;
+}
+
+.person_dead{
+    position: absolute;
+    width: 60px;
+    height: 25px;
+    padding: 2px;
+    left: 85%;
+    top: -5%;
+    background-color: rgb(0, 0, 0);
+    font-weight: 900;
+    color: rgb(255, 252, 252);
+    text-align: center;
+    border: solid 2px rgb(26, 26, 26);
+    border-radius: 5px;
+}
+
+.person_detention{
+    position: absolute;
+    width: 60px;
+    height: 25px;
+    padding: 2px;
+    left: 85%;
+    top: -5%;
+    background-color: rgb(87, 2, 98);
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    border: solid 2px rgb(26, 26, 26);
+    border-radius: 5px;
+}
+
+.person_dead_mark{
+    position:absolute;
+    width: 50px;
+    height: 50px;
+    left: -15px;
+    bottom: 60px;
+    opacity: 0.8;
 }
 
 .hover_big:hover{
@@ -131,10 +186,19 @@ body{
     height: 100px;
     margin: 10px;
     border-radius: 3px;
-    
+    margin-top: 30px;
     background-color: var(--item-color); 
 }
 
 .person > div:hover{
     border: 5px solid black;
+}
+
+.person_dead_fillter{
+    position:absolute;
+    background-color: #363636bf;
+    width: 100%;
+    height: 100%;
+    /* top:-15px;
+    left: -15px; */
 }
