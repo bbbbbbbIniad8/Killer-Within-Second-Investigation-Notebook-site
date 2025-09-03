@@ -49,7 +49,6 @@ people.forEach((personName, index) => {
     deadMark.style.display = 'none';
     div.appendChild(deadMark)
 
-
     div.addEventListener('click', () => {
         checkPerson(index); 
     });
@@ -96,7 +95,6 @@ function checkPerson(index){
     let element = document.getElementById(`${people[index]}_checked`);
     element.className = (target === true) ? 'person_checked_before' : 'person_checked_after' ;
     element.textContent = (target === true) ? '' : `${checkedText}`;
-
 }
 
 function changeTakenCard(index){
