@@ -17,54 +17,50 @@ let whoKillerIndex = -1;
 let whosubKillerIndex = -1;
 
 
-
 people.forEach((personName, index) => { 
     const div = document.createElement('div');
     div.id = personName;
 
-    const deadFillter = document.createElement('div'); 
-    deadFillter.id = `${personName}_dead_fillter`;
-    deadFillter.className = 'person_dead_fillter';
-    deadFillter.style.display = 'none';
+    createElement(div,
+                  `${personName}_dead_fillter`,
+                  'person_dead_fillter',
+                  null,
+                  'none')
 
-    const innerElement = document.createElement('div'); 
-    innerElement.id = `${personName}_name`;
-    innerElement.className = 'person_name';
-    innerElement.textContent = personName;
+    createElement(div,
+                  `${personName}_name`,
+                  'person_name',
+                   personName,
+                   null)
 
-    const checked = document.createElement('div'); 
-    checked.id = `${personName}_checked`;
-    checked.className = 'person_checked_before';
-    checked.textContent = '';
+    createElement(div,
+                  `${personName}_checked`,
+                  'person_checked_before',
+                   '',
+                   null);
 
-    const takenCard = document.createElement('div'); 
-    takenCard.id = `${personName}_takenCard`;
-    takenCard.className = 'person_takenCard_before  hover_big';
-    takenCard.textContent = `身分証所持`;
-
-    const dead = document.createElement('div'); 
-    dead.id = `${personName}_deadState`;
-    dead.className = 'person_alive  hover_big';
-    dead.textContent = `生存`;
+    const takenCard = createElement( div,
+                                    `${personName}_takenCard`,
+                                    'person_takenCard_before  hover_big taken_card_window',
+                                    '身分証所持',
+                                    null);
+    
+    const dead = createElement(      div,
+                                    `${personName}_deadState`,
+                                    'person_alive  hover_big deadState_window',
+                                    '生存',
+                                    null);
 
     const deadMark = document.createElement('img'); 
     deadMark.id = `${personName}_dead_mark`;
     deadMark.className = 'person_dead_mark';
     deadMark.src = `../publicdomainq-0035421kjvdum.png`;
     deadMark.style.display = 'none';
-
-    
-
-    div.appendChild(deadFillter)
-    div.appendChild(innerElement);
-    div.appendChild(checked);
-    div.appendChild(takenCard)
-    div.appendChild(dead)
     div.appendChild(deadMark)
 
 
     div.addEventListener('click', () => {
-        check_person(index); 
+        checkPerson(index); 
     });
 
     takenCard.addEventListener('click', (event) =>{
@@ -75,14 +71,30 @@ people.forEach((personName, index) => {
     dead.addEventListener('click', (event) =>{
         event.stopPropagation()
         changeAlive(index);    
-    })
-
-    
+    })    
     personContainer.appendChild(div);
 });
 
+function createElement(parent, childId, childClass, childTextContent, childDisplayStyle){
+    const child = document.createElement('div'); 
+    if(childId){
+        child.id = childId;
+    }
+    if(childClass){
+        child.className = childClass;
+    }
+    if(childTextContent){
+        child.textContent=childTextContent;
+    }
+    if(childDisplayStyle !== null){
+        child.style.display = childDisplayStyle;
+    }
+    parent.appendChild(child);
+    
+    return child;
+}
 
-function check_person(index){
+function checkPerson(index){
     const target = personState.checkList[index];
     personState.checkList[index] = (target === true) ? false : true;
     let element = document.getElementById(`${dict[index]}_checked`);
@@ -95,7 +107,13 @@ function changeTakenCard(index){
     const target = personState.takenCardList[index];
     personState.takenCardList[index] = (target === true) ? false : true;
     let element = document.getElementById(`${dict[index]}_takenCard`);
-    element.className =  (target === true) ? 'person_takenCard_before hover_big' : 'person_takenCard_after hover_big';
+    if(target === true){
+        element.classList.remove('person_takenCard_after');
+        element.classList.add('person_takenCard_before')
+    } else{
+        element.classList.remove('person_takenCard_before');
+        element.classList.add('person_takenCard_after')
+    }
     element.textContent = (target === true) ? '身分証所持' : '身分証盗難';
 }
 
@@ -108,18 +126,21 @@ function changeAlive(index){
 
     console.log(target)
     if (target % 3 === 0){
-        element.className = 'person_dead hover_big';
+        element.classList.remove('person_alive');
+        element.classList.add('person_dead')
         element.textContent = '死亡';
         deadFillter.style.display = '';
         deadMark.style.display = '';
         
     } else if(target % 3 === 1){
-        element.className = 'person_detention hover_big';
+        element.classList.remove('person_dead');
+        element.classList.add('person_detention')
         element.textContent = '留置';
         deadFillter.style.display = '';
         deadMark.style.display = '';
     } else {
-        element.className = 'person_alive hover_big';
+        element.classList.remove('person_detention');
+        element.classList.add('person_alive')
         element.textContent = '生存';
         deadFillter.style.display = 'none';
         deadMark.style.display = 'none';

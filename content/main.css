@@ -42,101 +42,8 @@ body{
     border-radius: 30px;
 }
 
-
-
 .person_checked_before{
     display: none;
-    background-color: white;
-    color: black;
-    width:fit-content;
-    padding: 2px;
-}
-
-.person_takenCard_before{
-    position: absolute;
-    width: 60px;
-    height: 45px;
-    padding: 2px;
-    left: 85%;
-    top: 70%;
-    background-color: rgb(33, 22, 96);
-    color: rgb(220, 218, 218);
-    text-align: center;
-    border: solid 2px rgb(254, 253, 253);
-    border-radius: 5px;
-}
-
-.person_takenCard_after{
-    position: absolute;
-    width: 60px;
-    height: 45px;
-    padding: 2px;
-    left: 85%;
-    top: 70%;
-    background-color: rgb(255, 255, 49);
-    font-weight: 900;
-    color: rgb(45, 13, 13);
-    text-align: center;
-    border: solid 2px rgb(26, 26, 26);
-    border-radius: 5px;
-}
-
-.person_alive{
-    position: absolute;
-    width: 60px;
-    height: 25px;
-    padding: 2px;
-    left: 85%;
-    top: -5%;
-    background-color: rgb(255, 255, 49);
-    font-weight: 900;
-    color: rgb(45, 13, 13);
-    text-align: center;
-    border: solid 2px rgb(26, 26, 26);
-    border-radius: 5px;
-}
-
-.person_dead{
-    position: absolute;
-    width: 60px;
-    height: 25px;
-    padding: 2px;
-    left: 85%;
-    top: -5%;
-    background-color: rgb(0, 0, 0);
-    font-weight: 900;
-    color: rgb(255, 252, 252);
-    text-align: center;
-    border: solid 2px rgb(26, 26, 26);
-    border-radius: 5px;
-}
-
-.person_detention{
-    position: absolute;
-    width: 60px;
-    height: 25px;
-    padding: 2px;
-    left: 85%;
-    top: -5%;
-    background-color: rgb(87, 2, 98);
-    font-weight: 900;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    border: solid 2px rgb(26, 26, 26);
-    border-radius: 5px;
-}
-
-.person_dead_mark{
-    position:absolute;
-    width: 50px;
-    height: 50px;
-    left: -15px;
-    bottom: 60px;
-    opacity: 0.8;
-}
-
-.hover_big:hover{
-    transform: scale(1.1);
 }
 
 .person_checked_after{
@@ -152,6 +59,71 @@ body{
     margin-left: 5px;
     text-align: center;
     padding: 2px;
+}
+
+.taken_card_window{
+    position: absolute;
+    width: 60px;
+    height: 45px;
+    padding: 2px;
+    left: 85%;
+    top: 70%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.person_takenCard_before{
+    background-color: rgb(33, 22, 96);
+    color: rgb(220, 218, 218);
+    border: solid 2px rgb(254, 253, 253);
+}
+
+.person_takenCard_after{
+    background-color: rgb(255, 255, 49);
+    font-weight: 900;
+    color: rgb(45, 13, 13);
+    border: solid 2px rgb(26, 26, 26);
+}
+
+.deadState_window{
+    position: absolute;
+    width: 60px;
+    height: 25px;
+    padding: 2px;
+    left: 85%;
+    top: -5%;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 900;
+    border: solid 2px rgb(26, 26, 26);
+}
+
+.person_alive{
+    background-color: rgb(255, 255, 255);
+    color: rgb(45, 13, 13);
+}
+
+.person_dead{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 252, 252);
+}
+
+.person_detention{
+    background-color: rgb(87, 2, 98);
+    color: rgb(255, 255, 255);
+}
+
+.person_dead_mark{
+    position:absolute;
+    width: 50px;
+    height: 50px;
+    left: -15px;
+    bottom: 60px;
+    opacity: 0.8;
+}
+
+.hover_big:hover{
+    transform: scale(1.1);
 }
 
 
@@ -199,6 +171,4 @@ body{
     background-color: #363636bf;
     width: 100%;
     height: 100%;
-    /* top:-15px;
-    left: -15px; */
 }
