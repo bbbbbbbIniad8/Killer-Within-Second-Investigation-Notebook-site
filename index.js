@@ -10,8 +10,6 @@ const dict = {
 
 const people = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 const personContainer = document.querySelector('.person');
-const KillerSelect = document.getElementById('Killer-select')
-const subKillerSelect = document.getElementById('sub-Killer-select')
 const checkedText = "！"
 let whoKillerIndex = -1;
 let whosubKillerIndex = -1;
@@ -94,6 +92,11 @@ function createElement(parent, childId, childClass, childTextContent, childDispl
     return child;
 }
 
+function changeClass(element, classNameA, classNameB){
+    element.classList.remove(classNameA);
+    element.classList.add(classNameB)
+}
+
 function checkPerson(index){
     const target = personState.checkList[index];
     personState.checkList[index] = (target === true) ? false : true;
@@ -108,11 +111,9 @@ function changeTakenCard(index){
     personState.takenCardList[index] = (target === true) ? false : true;
     let element = document.getElementById(`${dict[index]}_takenCard`);
     if(target === true){
-        element.classList.remove('person_takenCard_after');
-        element.classList.add('person_takenCard_before')
+        changeClass(element, 'person_takenCard_after', 'person_takenCard_before');
     } else{
-        element.classList.remove('person_takenCard_before');
-        element.classList.add('person_takenCard_after')
+        changeClass(element, 'person_takenCard_before', 'person_takenCard_after');
     }
     element.textContent = (target === true) ? '身分証所持' : '身分証盗難';
 }
@@ -126,21 +127,18 @@ function changeAlive(index){
 
     console.log(target)
     if (target % 3 === 0){
-        element.classList.remove('person_alive');
-        element.classList.add('person_dead')
+        changeClass(element, 'person_alive', 'person_dead');
         element.textContent = '死亡';
         deadFillter.style.display = '';
         deadMark.style.display = '';
         
     } else if(target % 3 === 1){
-        element.classList.remove('person_dead');
-        element.classList.add('person_detention')
+        changeClass(element, 'person_dead', 'person_detention');
         element.textContent = '留置';
         deadFillter.style.display = '';
         deadMark.style.display = '';
     } else {
-        element.classList.remove('person_detention');
-        element.classList.add('person_alive')
+        changeClass(element, 'person_detention', 'person_alive');
         element.textContent = '生存';
         deadFillter.style.display = 'none';
         deadMark.style.display = 'none';
