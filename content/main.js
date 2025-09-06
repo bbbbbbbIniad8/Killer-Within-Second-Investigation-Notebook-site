@@ -47,7 +47,7 @@ people.forEach((personName, index) => {
 
     const deadMark = document.createElement('img'); 
     deadMark.id = `${personName}_dead_mark`;
-    deadMark.className = 'person_dead_mark';
+    deadMark.className = 'person_dead_mark PC';
     deadMark.src = `../publicdomainq-0035421kjvdum.png`;
     deadMark.style.display = 'none';
     div.appendChild(deadMark)
@@ -158,15 +158,18 @@ function changeWeb(){
         let checkedMark = document.getElementById(`${people[index]}_checked`);
         let takenCard = document.getElementById(`${people[index]}_takenCard`);
         let master = document.getElementById(personName);
+        let deadMark = document.getElementById(`${personName}_dead_mark`)
         if (smartphonePage === false){
             changeClass(checkedMark, 'PC', 'PHONE');
             changeClass(takenCard, 'PC', 'PHONE');
             changeClass(master, 'PC', 'PHONE');
+            changeClass(deadMark, 'PC', 'PHONE');
             master.classList.add('flex-row');
         } else {
             changeClass(checkedMark, 'PHONE', 'PC');
             changeClass(takenCard, 'PHONE', 'PC');
             changeClass(master, 'PHONE', 'PC');
+            changeClass(deadMark, 'PHONE', 'PC');
             master.classList.remove('flex-row');
         }
     })
