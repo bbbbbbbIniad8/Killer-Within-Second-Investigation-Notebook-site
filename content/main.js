@@ -8,6 +8,8 @@ const people = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 const personContainer = document.querySelector('.person');
 const checkedText = "！"
 
+let smartphonePage = false;
+
 people.forEach((personName, index) => { 
     const div = document.createElement('div');
     div.id = personName;
@@ -26,7 +28,7 @@ people.forEach((personName, index) => {
 
     createElement(div,
                   `${personName}_checked`,
-                  'person_checked_before',
+                  'person_checked_before PC',
                    '',
                    null);
 
@@ -93,7 +95,11 @@ function checkPerson(index){
     const target = personState.checkList[index];
     personState.checkList[index] = (target === true) ? false : true;
     let element = document.getElementById(`${people[index]}_checked`);
-    element.className = (target === true) ? 'person_checked_before' : 'person_checked_after' ;
+    if (target === false){
+        changeClass(element,'person_checked_before', 'person_checked_after');
+    } else {
+        changeClass(element,'person_checked_after', 'person_checked_before');
+    }
     element.textContent = (target === true) ? '' : `${checkedText}`;
 }
 
@@ -134,5 +140,18 @@ function changeAlive(index){
         deadFillter.style.display = 'none';
         deadMark.style.display = 'none';
     }
+}
+
+function changeWeb(){
+    people.forEach((personName, index) => { 
+        let element = document.getElementById(`${people[index]}_checked`);
+        if (smartphonePage === false){
+            changeClass(element, 'PC', 'PHONE');
+        } else {
+            changeClass(element, 'PHONE', 'PC');
+        }
+    })
+
+    smartphonePage = (smartphonePage === false) ? true: false;
 }
 
