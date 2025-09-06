@@ -13,6 +13,7 @@ let smartphonePage = false;
 people.forEach((personName, index) => { 
     const div = document.createElement('div');
     div.id = personName;
+    div.className = 'person_master_window PC'
 
     createElement(div,
                   `${personName}_dead_fillter`,
@@ -34,7 +35,7 @@ people.forEach((personName, index) => {
 
     const takenCard = createElement( div,
                                     `${personName}_takenCard`,
-                                    'person_takenCard_before  hover_big taken_card_window',
+                                    'person_takenCard_before  hover_big taken_card_window PC',
                                     '身分証所持',
                                     null);
     
@@ -66,6 +67,10 @@ people.forEach((personName, index) => {
     })    
     personContainer.appendChild(div);
 });
+
+if (window.innerWidth < 800){
+    changeWeb();
+}
 
 function createElement(parent, childId, childClass, childTextContent, childDisplayStyle){
     const child = document.createElement('div'); 
@@ -143,15 +148,28 @@ function changeAlive(index){
 }
 
 function changeWeb(){
+    let personlist = document.getElementById('person-list');
+    if (smartphonePage === false){
+        changeClass(personlist, 'flex-row', 'flex-column')
+    } else {
+        changeClass(personlist, 'flex-column', 'flex-row')
+    }
     people.forEach((personName, index) => { 
-        let element = document.getElementById(`${people[index]}_checked`);
+        let checkedMark = document.getElementById(`${people[index]}_checked`);
+        let takenCard = document.getElementById(`${people[index]}_takenCard`);
+        let master = document.getElementById(personName);
         if (smartphonePage === false){
-            changeClass(element, 'PC', 'PHONE');
+            changeClass(checkedMark, 'PC', 'PHONE');
+            changeClass(takenCard, 'PC', 'PHONE');
+            changeClass(master, 'PC', 'PHONE');
+            master.classList.add('flex-row');
         } else {
-            changeClass(element, 'PHONE', 'PC');
+            changeClass(checkedMark, 'PHONE', 'PC');
+            changeClass(takenCard, 'PHONE', 'PC');
+            changeClass(master, 'PHONE', 'PC');
+            master.classList.remove('flex-row');
         }
     })
-
     smartphonePage = (smartphonePage === false) ? true: false;
 }
 

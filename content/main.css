@@ -26,7 +26,6 @@ body{
     justify-content: space-between;
     width: 85%;
     user-select: none;
-
 }
 
 .person_name{
@@ -43,36 +42,56 @@ body{
     border-radius: 30px;
 }
 
+
 .person_checked_before{
     display: none;
 }
 
-.person_checked_after.PC{
+.person_checked_after{
     background-color: black;
     color: white;
     border: 2px solid white;
     border-radius: 5px;
-    width: 40px;
-    height: 40px;
     transform: rotate(-10deg);
-    font-size: 170%;
     font-weight: 700;
     margin-left: 5px;
     text-align: center;
     padding: 2px;
 }
 
+.person_checked_after.PC{
+    width: 40px;
+    height: 40px;
+    font-size: 170%;
+    margin-left: 0px;
+}
 
+.person_checked_after.PHONE{
+    width: 30px;
+    height: 30px;
+    font-size: 140%;
+    margin-left: 5px;
+}
 
 .taken_card_window{
     position: absolute;
-    width: 60px;
-    height: 45px;
     padding: 2px;
-    left: 85%;
-    top: 70%;
     text-align: center;
     border-radius: 5px;
+}
+
+.taken_card_window.PC{
+    width: 60px;
+    height: 45px;
+    top: 70%;
+    left: 85%;
+}
+
+.taken_card_window.PHONE{
+    width: 80px;
+    height: 25px;
+    top: 0%;
+    left:55%;
 }
 
 .person_takenCard_before{
@@ -154,18 +173,27 @@ body{
 #I { --item-color: var(--I-color); }
 #J { --item-color: var(--J-color); }
 
-.person > div{
+.person_master_window{
     position: relative;
     border:double 5px black;
     width: 300px;
-    height: 100px;
-    margin: 10px;
     border-radius: 3px;
-    margin-top: 30px;
     background-color: var(--item-color); 
 }
 
-.person > div:hover{
+.person_master_window.PC{
+    height: 100px;
+    margin: 10px;
+    margin-top: 30px;
+}
+
+.person_master_window.PHONE{
+    height: 30px;
+    margin: 10px;
+    margin-top: 10px;
+}
+
+.person_master_window:hover{
     border: 5px solid black;
 }
 
