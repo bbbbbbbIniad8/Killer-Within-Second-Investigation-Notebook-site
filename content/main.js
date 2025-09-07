@@ -6,7 +6,10 @@ const personState = {
 
 const people = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 const personContainer = document.querySelector('.person');
-const checkedText = "！"
+const checkedText = "！";
+const touchA = document.getElementById('touch-A');
+const touchB = document.getElementById('touch-B');
+const day = document.getElementById('day');
 
 let smartphonePage = false;
 
@@ -50,6 +53,11 @@ people.forEach((personName, index) => {
     deadMark.className = 'person_dead_mark PC';
     deadMark.src = `../publicdomainq-0035421kjvdum.png`;
     deadMark.style.display = 'none';
+
+    
+    createOption(touchA, personName);
+    createOption(touchB, personName);
+
     div.appendChild(deadMark)
 
     div.addEventListener('click', () => {
@@ -64,13 +72,46 @@ people.forEach((personName, index) => {
     dead.addEventListener('click', (event) =>{
         event.stopPropagation()
         changeAlive(index);    
-    })    
+    })
+
+    
     personContainer.appendChild(div);
 });
 
-if (window.innerWidth < 800){
-    changeWeb();
-}
+touchA.addEventListener('change', (event) =>{
+    touchA.className = `${event.target.value} down-box`;
+})
+
+touchB.addEventListener('change', (event) =>{
+    touchB.className = `${event.target.value} down-box`;
+})
+
+// if (window.innerWidth < 800){
+changeWeb();
+// }
+
+const writeBtn = document.getElementById('write-btn');
+const logList = document.getElementById('log-list');
+let logIndex = 0;
+writeBtn.addEventListener('click', () =>{
+    const child = document.createElement('div'); 
+    const childContent = document.createElement('div');
+    const childDeleteEv = document.createElement('div');
+
+    child.className = 'flex-row';
+
+    childContent.id = `logIndex_${logIndex}`;
+    childContent.className = 'list_item';
+    childContent.textContent = `${day.value}日目に${touchA.value}と${touchB.value}が接触。`
+
+    childDeleteEv.textContent = "a";
+
+
+    child.appendChild(childContent);
+    child.appendChild(childDeleteEv);
+    logList.appendChild(child);
+    logIndex++;
+})
 
 function createElement(parent, childId, childClass, childTextContent, childDisplayStyle){
     const child = document.createElement('div'); 
@@ -89,6 +130,19 @@ function createElement(parent, childId, childClass, childTextContent, childDispl
     parent.appendChild(child);
     
     return child;
+}
+
+function createOption(parent, value){
+    const option = document.createElement('option'); 
+    if(value){
+        option.value = value;
+    }
+    if(value){
+        option.textContent = value;
+    }
+    option.className = `options ${value}`;
+    parent.appendChild(option);
+    return option;
 }
 
 function changeClass(element, classNameA, classNameB){

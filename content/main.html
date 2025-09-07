@@ -10,8 +10,25 @@
     <script src="../common/header.js"></script>
     <div id="header"></div>
     
-    <div id="content" class="flex-column">
+    <div id="content" class="flex-row">
         <div class="person flex-row" id="person-list">
+        </div>
+        <div id="log-board">
+            <h2>接触ログ</h2>
+            <p>
+                <input id="day" class="input-box" type="number" min="0" max="30" step="1" value="1">
+                日目
+                に
+                <select id="touch-A" class="down-box">
+                    <option>-</option>
+                </select>
+                と
+                <select id="touch-B" class="down-box">
+                    <option>-</option>
+                </select>が接触した。
+            </p>
+            <button id="write-btn">書き込む</button>
+            <div id="log-list" class="flex-column"></div>
         </div>
     </div>
     <button onclick="changeWeb()">change</button>
