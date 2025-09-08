@@ -16,6 +16,16 @@ const logList = document.getElementById('log-list');
 let modeBPage = false;
 let logIndex = 0;
 
+
+let modeC = false
+if (window.innerWidth < 800){
+    const content = document.getElementById("content");
+    changeClass(content, 'flex-row', 'flex-column');
+    content.classList.add('modeC');
+    content.style.alignItems = '';
+}
+
+
 people.forEach((personName, index) => { 
     const div = document.createElement('div');
     div.id = personName;
@@ -91,16 +101,27 @@ changeWeb();
 
 
 writeBtn.addEventListener('click', () =>{
-    if(touchA.value !== -1 && touchB.value !== -1 && touchA.value !== touchB.value){
+    let value1 = touchA.value;
+    let value2 = touchB.value;
+    if(value1 !== -1 && value2 !== -1 && value1 !== value2){
+        if (touchA.value > touchB.value){
+            value1 = touchB.value
+            value2 = touchA.value
+        }
         const child = document.createElement('div'); 
         child.className = 'flex-row item-box';
         child.id = `item-box-${logIndex}`
 
-        createElement(child, 
+        const logText = createElement(
+                    　child, 
                       `logIndex_${logIndex}`,
                       'list_item', 
-                      `${day.value}日目に${people[touchA.value]}と${people[touchB.value]}が接触。`,
-                       null)
+                      '',
+                       null);
+        
+        logText.innerHTML = 
+        `${day.value}日目に<span class='log-font ${people[value1]}'>${people[value1]}</span>と
+        <span class='log-font ${people[value2]}'>${people[value2]}</span>が接触。`
 
         const childDeleteEv = createElement(
                       child, 
@@ -212,4 +233,3 @@ function changeWeb(){
     })
     modeBPage = (modeBPage === false) ? true: false;
 }
-

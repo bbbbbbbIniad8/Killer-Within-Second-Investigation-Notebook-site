@@ -20,7 +20,6 @@ body{
 }
 
 #content{
-    align-items: center;
     width: 100%;
 }
 
@@ -232,16 +231,18 @@ body{
 
 #log-board{
     position: relative;
-    width: 50%;
+    width: 350px;
     height: 550px;
 }
 
 #log-content{
     margin: 5px;
     padding:5px;
-    width: 60%;
+    width: 350px;
     background-color: white;
     border: 1px solid black;
+    border-radius: 5px;
+    align-items: center;
 }
 
 #log-list{
@@ -271,13 +272,39 @@ body{
 #log-list{
     overflow: scroll;
     font-size: 120%;
+    background-color: black;
 }
 
 .item-box{
     border: 1px solid black;
-    justify-content: space-between
+    justify-content: space-between;
+    padding:5px;
+    background-color: rgb(249, 252, 255);
+    border-radius: 10px;
+    margin-top:5px;
+    margin-bottom:5px;
 }
 
 .delete-item{
     border: 1px solid black;
+    text-align: center;
+    padding:2px;
+    border-radius: 3px;
+}
+
+.log-font{
+    background-color: var(--item-color);
+    border-radius: 5px;
+    padding: 0px 5px 0px 5px;
+}
+
+#write-btn-board{
+    width: 100%;
+}
+
+#write-btn{
+    width: 20%;
+    height: 30px;
+    margin: 10px;
+    margin-left: 20px;
 }

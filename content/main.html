@@ -15,9 +15,9 @@
             <div class="person flex-row" id="person-list">
             </div>
             <div id="log-board">
-                <div id="log-content">
-                    <h2>接触ログ</h2>
-                    <p>
+                <div id="log-content" class="flex-column">
+                    <h2 style="text-align: center;">接触ログ</h2>
+                    <div id="log-input">
                         <input id="day" class="input-box" type="number" min="0" max="30" step="1" value="1">
                         日目
                         に
@@ -28,14 +28,16 @@
                         <select id="touch-B" class="down-box">
                             <option value="-1">-</option>
                         </select>が接触した。
-                    </p>
-                    <button id="write-btn">書き込む</button>
+                    </div>
+                    <div id="write-btn-board">
+                        <button id="write-btn">書き込む</button>
+                    </div>
                     <div id="log-list" class="flex-column"></div>
                 </div>
             </div>
         </div>
     </div>
-    <button onclick="changeWeb()">change</button>
+    <!-- <button onclick="changeWeb()">change</button> -->
     <script src="main.js"></script>
 </body>
 </html>
