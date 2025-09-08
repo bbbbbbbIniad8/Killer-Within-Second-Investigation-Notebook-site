@@ -10,11 +10,11 @@ const checkedText = "！";
 const touchA = document.getElementById('touch-A');
 const touchB = document.getElementById('touch-B');
 const day = document.getElementById('day');
+const writeBtn = document.getElementById('write-btn');
+const logList = document.getElementById('log-list');
 
-let modeBpage = false;
-// if (window.innerWidth < 800){
-changeWeb();
-// }
+let modeBPage = false;
+let logIndex = 0;
 
 people.forEach((personName, index) => { 
     const div = document.createElement('div');
@@ -85,9 +85,11 @@ people.forEach((personName, index) => {
 })
 })
 
-const writeBtn = document.getElementById('write-btn');
-const logList = document.getElementById('log-list');
-let logIndex = 0;
+// if (window.innerWidth < 800){
+changeWeb();
+// }
+
+
 writeBtn.addEventListener('click', () =>{
     if(touchA.value !== -1 && touchB.value !== -1 && touchA.value !== touchB.value){
         const child = document.createElement('div'); 
@@ -192,7 +194,7 @@ function changeAlive(index){
 
 function changeWeb(){
     const personList = document.getElementById('person-list');
-    boollenChangeClass(personList, modeBpage, 'flex-row', 'flex-column');
+    boollenChangeClass(personList, modeBPage, 'flex-row', 'flex-column');
     people.forEach((personName, index) => { 
         const checkedMark = document.getElementById(`${people[index]}_checked`);
         const takenCard = document.getElementById(`${people[index]}_takenCard`);
@@ -200,13 +202,14 @@ function changeWeb(){
         const deadMark = document.getElementById(`${personName}_dead_mark`)
         const elementList = [checkedMark, takenCard, master, deadMark];
         elementList.forEach((element, index) => {
-            boollenChangeClass(element, modeBpage, 'modeA', 'modeB');
+            boollenChangeClass(element, modeBPage, 'modeA', 'modeB');
         });
-        if (modeBpage === false){
+        if (modeBPage === false){
             master.classList.add('flex-row');
         } else {
             master.classList.remove('flex-row');
         }
     })
-    modeBpage = (modeBpage === false) ? true: false;
+    modeBPage = (modeBPage === false) ? true: false;
 }
+
