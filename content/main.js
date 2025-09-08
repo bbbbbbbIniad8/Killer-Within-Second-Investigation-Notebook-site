@@ -11,12 +11,15 @@ const touchA = document.getElementById('touch-A');
 const touchB = document.getElementById('touch-B');
 const day = document.getElementById('day');
 
-let smartphonePage = false;
+let modeBpage = false;
+// if (window.innerWidth < 800){
+changeWeb();
+// }
 
 people.forEach((personName, index) => { 
     const div = document.createElement('div');
     div.id = personName;
-    div.className = 'person_master_window PC'
+    div.className = 'person_master_window modeA'
 
     createElement(div,
                   `${personName}_dead_fillter`,
@@ -32,13 +35,13 @@ people.forEach((personName, index) => {
 
     createElement(div,
                   `${personName}_checked`,
-                  'person_checked_before PC',
+                  'person_checked before modeA',
                    '',
                    null);
 
     const takenCard = createElement( div,
                                     `${personName}_takenCard`,
-                                    'person_takenCard_before  hover_big taken_card_window PC',
+                                    'person_takenCard before  hover_big taken_card_window modeA',
                                     '身分証所持',
                                     null);
     
@@ -50,13 +53,12 @@ people.forEach((personName, index) => {
 
     const deadMark = document.createElement('img'); 
     deadMark.id = `${personName}_dead_mark`;
-    deadMark.className = 'person_dead_mark PC';
+    deadMark.className = 'person_dead_mark modeA';
     deadMark.src = `../publicdomainq-0035421kjvdum.png`;
     deadMark.style.display = 'none';
-
     
-    createOption(touchA, personName);
-    createOption(touchB, personName);
+    createOption(touchA, index);
+    createOption(touchB, index);
 
     div.appendChild(deadMark)
 
@@ -73,74 +75,68 @@ people.forEach((personName, index) => {
         event.stopPropagation()
         changeAlive(index);    
     })
-
     
     personContainer.appendChild(div);
 });
 
-touchA.addEventListener('change', (event) =>{
-    touchA.className = `${event.target.value} down-box`;
+[touchA, touchB].forEach((element, index) =>{
+    element.addEventListener('change', (event) =>{
+    element.className = `${people[event.target.value]} down-box`;
 })
-
-touchB.addEventListener('change', (event) =>{
-    touchB.className = `${event.target.value} down-box`;
 })
-
-// if (window.innerWidth < 800){
-changeWeb();
-// }
 
 const writeBtn = document.getElementById('write-btn');
 const logList = document.getElementById('log-list');
 let logIndex = 0;
 writeBtn.addEventListener('click', () =>{
-    const child = document.createElement('div'); 
-    const childContent = document.createElement('div');
-    const childDeleteEv = document.createElement('div');
+    if(touchA.value !== -1 && touchB.value !== -1 && touchA.value !== touchB.value){
+        const child = document.createElement('div'); 
+        child.className = 'flex-row item-box';
+        child.id = `item-box-${logIndex}`
 
-    child.className = 'flex-row';
+        createElement(child, 
+                      `logIndex_${logIndex}`,
+                      'list_item', 
+                      `${day.value}日目に${people[touchA.value]}と${people[touchB.value]}が接触。`,
+                       null)
 
-    childContent.id = `logIndex_${logIndex}`;
-    childContent.className = 'list_item';
-    childContent.textContent = `${day.value}日目に${touchA.value}と${touchB.value}が接触。`
+        const childDeleteEv = createElement(
+                      child, 
+                      `delete_${logIndex}`,
+                      'delete-item',
+                       '削除',
+                       null)
 
-    childDeleteEv.textContent = "a";
+        childDeleteEv.onclick = () => {
+            deleteLog(child);
+        };
 
-
-    child.appendChild(childContent);
-    child.appendChild(childDeleteEv);
-    logList.appendChild(child);
-    logIndex++;
+        logList.prepend(child);
+        logIndex++;        
+        }
 })
+
+function deleteLog(target){
+    target.style.display = 'none';
+}
 
 function createElement(parent, childId, childClass, childTextContent, childDisplayStyle){
     const child = document.createElement('div'); 
-    if(childId){
-        child.id = childId;
-    }
-    if(childClass){
-        child.className = childClass;
-    }
-    if(childTextContent){
-        child.textContent=childTextContent;
-    }
+    child.id = childId;
+    child.className = childClass;
+    child.textContent=childTextContent;
     if(childDisplayStyle !== null){
         child.style.display = childDisplayStyle;
     }
     parent.appendChild(child);
-    
     return child;
 }
 
 function createOption(parent, value){
     const option = document.createElement('option'); 
-    if(value){
-        option.value = value;
-    }
-    if(value){
-        option.textContent = value;
-    }
-    option.className = `options ${value}`;
+    option.value = value;
+    option.textContent = people[value];
+    option.className = `options ${people[value]}`;
     parent.appendChild(option);
     return option;
 }
@@ -150,83 +146,67 @@ function changeClass(element, classNameA, classNameB){
     element.classList.add(classNameB)
 }
 
+function boollenChangeClass(element, bool, elementX, elementY){
+    const argX = (bool === false) ? elementX : elementY;
+    const argY = (bool === false) ? elementY : elementX;
+    changeClass(element, argX, argY);
+}
+
 function checkPerson(index){
     const target = personState.checkList[index];
     personState.checkList[index] = (target === true) ? false : true;
-    let element = document.getElementById(`${people[index]}_checked`);
-    if (target === false){
-        changeClass(element,'person_checked_before', 'person_checked_after');
-    } else {
-        changeClass(element,'person_checked_after', 'person_checked_before');
-    }
+    const element = document.getElementById(`${people[index]}_checked`);
+    boollenChangeClass(element, target, 'before', 'after');
     element.textContent = (target === true) ? '' : `${checkedText}`;
 }
 
 function changeTakenCard(index){
     const target = personState.takenCardList[index];
     personState.takenCardList[index] = (target === true) ? false : true;
-    let element = document.getElementById(`${people[index]}_takenCard`);
-    if(target === true){
-        changeClass(element, 'person_takenCard_after', 'person_takenCard_before');
-    } else{
-        changeClass(element, 'person_takenCard_before', 'person_takenCard_after');
-    }
+    const element = document.getElementById(`${people[index]}_takenCard`);
+    boollenChangeClass(element, target, 'before', 'after');
     element.textContent = (target === true) ? '身分証所持' : '身分証盗難';
 }
 
 function changeAlive(index){
-    const target = personState.deadList[index];
+    const target = personState.deadList[index] + 1;
     personState.deadList[index] += 1;
-    let element = document.getElementById(`${people[index]}_deadState`);
-    let deadFillter = document.getElementById(`${people[index]}_dead_fillter`)
-    let deadMark = document.getElementById(`${people[index]}_dead_mark`)
-
-    console.log(target)
-    if (target % 3 === 0){
+    const element = document.getElementById(`${people[index]}_deadState`);
+    const deadFillter = document.getElementById(`${people[index]}_dead_fillter`)
+    const deadMark = document.getElementById(`${people[index]}_dead_mark`)
+    if (target % 3 === 1){
         changeClass(element, 'person_alive', 'person_dead');
         element.textContent = '死亡';
         deadFillter.style.display = '';
         deadMark.style.display = '';
-        
-    } else if(target % 3 === 1){
+    } else if(target % 3 === 2){
         changeClass(element, 'person_dead', 'person_detention');
         element.textContent = '留置';
-        deadFillter.style.display = '';
-        deadMark.style.display = '';
     } else {
         changeClass(element, 'person_detention', 'person_alive');
         element.textContent = '生存';
         deadFillter.style.display = 'none';
         deadMark.style.display = 'none';
-    }
+    }    
 }
 
 function changeWeb(){
-    let personlist = document.getElementById('person-list');
-    if (smartphonePage === false){
-        changeClass(personlist, 'flex-row', 'flex-column')
-    } else {
-        changeClass(personlist, 'flex-column', 'flex-row')
-    }
+    const personList = document.getElementById('person-list');
+    boollenChangeClass(personList, modeBpage, 'flex-row', 'flex-column');
     people.forEach((personName, index) => { 
-        let checkedMark = document.getElementById(`${people[index]}_checked`);
-        let takenCard = document.getElementById(`${people[index]}_takenCard`);
-        let master = document.getElementById(personName);
-        let deadMark = document.getElementById(`${personName}_dead_mark`)
-        if (smartphonePage === false){
-            changeClass(checkedMark, 'PC', 'PHONE');
-            changeClass(takenCard, 'PC', 'PHONE');
-            changeClass(master, 'PC', 'PHONE');
-            changeClass(deadMark, 'PC', 'PHONE');
+        const checkedMark = document.getElementById(`${people[index]}_checked`);
+        const takenCard = document.getElementById(`${people[index]}_takenCard`);
+        const master = document.getElementById(personName);
+        const deadMark = document.getElementById(`${personName}_dead_mark`)
+        const elementList = [checkedMark, takenCard, master, deadMark];
+        elementList.forEach((element, index) => {
+            boollenChangeClass(element, modeBpage, 'modeA', 'modeB');
+        });
+        if (modeBpage === false){
             master.classList.add('flex-row');
         } else {
-            changeClass(checkedMark, 'PHONE', 'PC');
-            changeClass(takenCard, 'PHONE', 'PC');
-            changeClass(master, 'PHONE', 'PC');
-            changeClass(deadMark, 'PHONE', 'PC');
             master.classList.remove('flex-row');
         }
     })
-    smartphonePage = (smartphonePage === false) ? true: false;
+    modeBpage = (modeBpage === false) ? true: false;
 }
-
