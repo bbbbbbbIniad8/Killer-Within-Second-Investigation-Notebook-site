@@ -164,12 +164,15 @@ body{
 
 
 :root {
-    --A-color: #f75353; 
+    --A-color: #f75353;
+    --A2-color: #f76a6a;
     --B-color: #5356f7;
+    --B2-color: #7375fe;
     --C-color: #5df25b;
     --D-color: #f7b353;
     --E-color: #f7e953;
     --F-color: #f753ef;
+    --F2-color: #fd7af7;
     --G-color: #f8ace1;
     --H-color: #adf753;
     --I-color: #53d1f7;
@@ -187,12 +190,12 @@ body{
 #I { --item-color: var(--I-color); }
 #J { --item-color: var(--J-color); }
 
-.A { --item-color: var(--A-color); }
-.B { --item-color: var(--B-color); }
+.A { --item-color: var(--A2-color); }
+.B { --item-color: var(--B2-color); }
 .C { --item-color: var(--C-color); }
 .D { --item-color: var(--D-color); }
 .E { --item-color: var(--E-color); }
-.F { --item-color: var(--F-color); }
+.F { --item-color: var(--F2-color); }
 .G { --item-color: var(--G-color); }
 .H { --item-color: var(--H-color); }
 .I { --item-color: var(--I-color); }

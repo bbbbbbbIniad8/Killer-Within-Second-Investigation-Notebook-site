@@ -107,7 +107,7 @@ changeWeb();
 writeBtn.addEventListener('click', () =>{
     let value1 = touchA.value;
     let value2 = touchB.value;
-    if(value1 !== -1 && value2 !== -1 && value1 !== value2){
+    if(value1 !== '-1' && value2 !== '-1' && value1 !== value2){
         if (touchA.value > touchB.value){
             value1 = touchB.value
             value2 = touchA.value
