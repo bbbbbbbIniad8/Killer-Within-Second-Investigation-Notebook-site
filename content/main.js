@@ -16,14 +16,18 @@ const logList = document.getElementById('log-list');
 let modeBPage = false;
 let logIndex = 0;
 
-
-let modeC = false
-if (window.innerWidth < 800){
+const changeview = () =>{
     const content = document.getElementById("content");
-    changeClass(content, 'flex-row', 'flex-column');
-    content.classList.add('modeC');
-    content.style.alignItems = '';
+    if (window.innerWidth < 800){
+        content.classList = 'flex-column';
+    }else{
+        content.classList = 'flex-row';
+    }
 }
+
+changeview()
+window.addEventListener('resize', changeview);
+
 
 
 people.forEach((personName, index) => { 
