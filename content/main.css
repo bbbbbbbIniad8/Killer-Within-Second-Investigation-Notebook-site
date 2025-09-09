@@ -262,7 +262,7 @@ body{
 }
 
 .down-box{
-    width: 60px;
+    width: 80px;
     height: 30px;
     font-size:150%;
     background-color: var(--item-color);
