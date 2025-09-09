@@ -12,19 +12,22 @@ body{
     flex-direction: row;
 }
 
-#content{
+#board{
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin:0px;
+    justify-content: space-between;
 }
 
-#judge-text{
-    white-space: pre-line;
+#content{
+    width: 100%;
 }
 
 .person{
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-    width: 85%;
+    width: 50%;
     user-select: none;
 }
 
@@ -43,11 +46,11 @@ body{
 }
 
 
-.person_checked_before{
+.person_checked.before{
     display: none;
 }
 
-.person_checked_after{
+.person_checked.after{
     position: relative;
     background-color: black;
     color: white;
@@ -60,7 +63,7 @@ body{
     padding: 2px;
 }
 
-.person_checked_after.PC{
+.person_checked.after.modeA{
     width: 40px;
     height: 40px;
     font-size: 170%;
@@ -69,7 +72,7 @@ body{
     margin-left: 0px;
 }
 
-.person_checked_after.PHONE{
+.person_checked.after.modeB{
     width: 30px;
     height: 30px;
     top: -3px;
@@ -84,27 +87,27 @@ body{
     border-radius: 5px;
 }
 
-.taken_card_window.PC{
+.taken_card_window.modeA{
     width: 60px;
     height: 45px;
     top: 70%;
     left: 85%;
 }
 
-.taken_card_window.PHONE{
+.taken_card_window.modeB{
     width: 80px;
     height: 25px;
     top: 0%;
     left:55%;
 }
 
-.person_takenCard_before{
+.person_takenCard.before{
     background-color: rgb(33, 22, 96);
     color: rgb(220, 218, 218);
     border: solid 2px rgb(254, 253, 253);
 }
 
-.person_takenCard_after{
+.person_takenCard.after{
     background-color: rgb(255, 255, 49);
     font-weight: 900;
     color: rgb(45, 13, 13);
@@ -147,11 +150,11 @@ body{
     opacity: 0.8;
 }
 
-.person_dead_mark.PC{
+.person_dead_mark.modeA{
     bottom: 60px;
 }
 
-.person_dead_mark.PHONE{
+.person_dead_mark.modeB{
     bottom: -6px;
 }
 
@@ -161,12 +164,15 @@ body{
 
 
 :root {
-    --A-color: #f75353; 
+    --A-color: #f75353;
+    --A2-color: #f76a6a;
     --B-color: #5356f7;
+    --B2-color: #7375fe;
     --C-color: #5df25b;
     --D-color: #f7b353;
     --E-color: #f7e953;
     --F-color: #f753ef;
+    --F2-color: #fd7af7;
     --G-color: #f8ace1;
     --H-color: #adf753;
     --I-color: #53d1f7;
@@ -184,6 +190,17 @@ body{
 #I { --item-color: var(--I-color); }
 #J { --item-color: var(--J-color); }
 
+.A { --item-color: var(--A2-color); }
+.B { --item-color: var(--B2-color); }
+.C { --item-color: var(--C-color); }
+.D { --item-color: var(--D-color); }
+.E { --item-color: var(--E-color); }
+.F { --item-color: var(--F2-color); }
+.G { --item-color: var(--G-color); }
+.H { --item-color: var(--H-color); }
+.I { --item-color: var(--I-color); }
+.J { --item-color: var(--J-color); }
+
 .person_master_window{
     position: relative;
     border:double 5px black;
@@ -192,13 +209,13 @@ body{
     background-color: var(--item-color); 
 }
 
-.person_master_window.PC{
+.person_master_window.modeA{
     height: 100px;
     margin: 10px;
     margin-top: 30px;
 }
 
-.person_master_window.PHONE{
+.person_master_window.modeB{
     height: 30px;
     margin: 10px;
     margin-top: 10px;
@@ -213,4 +230,94 @@ body{
     background-color: #363636bf;
     width: 100%;
     height: 100%;
+}
+
+#log-board{
+    position: relative;
+    width: 350px;
+    height: 550px;
+}
+
+#log-content{
+    margin: 5px;
+    padding:5px;
+    padding-bottom: 50px;
+    width: 350px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    align-items: center;
+}
+
+#log-list{
+    border: 1px solid black;
+    height:350px;
+    width: 90%;
+}
+
+#day{
+    width: 50px;
+    height: 30px;
+    font-weight: 600;
+    font-size:200%;
+}
+
+.down-box{
+    width: 50px;
+    height: 30px;
+    font-size:150%;
+    background-color: var(--item-color);
+}
+
+.options{
+    background-color: var(--item-color);
+}
+
+#log-list{
+    overflow: scroll;
+    font-size: 120%;
+    background-color: black;
+}
+
+.item-box{
+    border: 1px solid black;
+    justify-content: space-between;
+    padding:5px;
+    background-color: rgb(249, 252, 255);
+    border-radius: 10px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.delete-item{
+    border: 1px solid black;
+    text-align: center;
+    padding:2px;
+    padding:3px;
+    border-radius: 3px;
+}
+
+.delete-item:hover{
+    background-color: black;
+    color: white;
+}
+
+.log-font{
+    display: inline-block;
+    background-color: var(--item-color);
+    border-radius: 5px;
+    width: 20px;
+    text-align: center;
+    padding: 0px 5px 0px 5px;
+}
+
+#write-btn-board{
+    width: 100%;
+}
+
+#write-btn{
+    width: 20%;
+    height: 30px;
+    margin: 10px;
+    margin-left: 20px;
 }
