@@ -165,7 +165,6 @@ body{
 
 :root {
     --A-color: #f75353;
-    --A2-color: #f76a6a;
     --B-color: #5356f7;
     --B2-color: #7375fe;
     --C-color: #5df25b;
@@ -190,7 +189,7 @@ body{
 #I { --item-color: var(--I-color); }
 #J { --item-color: var(--J-color); }
 
-.A { --item-color: var(--A2-color); }
+.A { --item-color: var(--A-color); }
 .B { --item-color: var(--B2-color); }
 .C { --item-color: var(--C-color); }
 .D { --item-color: var(--D-color); }
@@ -263,7 +262,7 @@ body{
 }
 
 .down-box{
-    width: 50px;
+    width: 60px;
     height: 30px;
     font-size:150%;
     background-color: var(--item-color);
