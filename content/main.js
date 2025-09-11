@@ -35,35 +35,35 @@ people.forEach((personName, index) => {
     div.id = personName;
     div.className = 'person_master_window modeA'
 
-    createElement(div,
+    createAddElement(div,
                   `${personName}_dead_fillter`,
                   'person_dead_fillter',
                   null,
                   'none')
 
-    createElement(div,
+    createAddElement(div,
                   `${personName}_name`,
                   'person_name',
                    personName,
                    null)
 
-    createElement(div,
+    createAddElement(div,
                   `${personName}_checked`,
                   'person_checked before modeA',
                    '',
                    null);
 
-    const takenCard = createElement( div,
-                                    `${personName}_takenCard`,
-                                    'person_takenCard before  hover_big taken_card_window modeA',
-                                    '身分証所持',
-                                    null);
+    const takenCard = createAddElement( div,
+                                        `${personName}_takenCard`,
+                                        'person_takenCard before  hover_big taken_card_window modeA',
+                                        '身分証所持',
+                                        null);
     
-    const dead = createElement(      div,
-                                    `${personName}_deadState`,
-                                    'person_alive  hover_big deadState_window',
-                                    '生存',
-                                    null);
+    const dead = createAddElement(      div,
+                                        `${personName}_deadState`,
+                                        'person_alive  hover_big deadState_window',
+                                        '生存',
+                                        null);
 
     const deadMark = document.createElement('img'); 
     deadMark.id = `${personName}_dead_mark`;
@@ -116,7 +116,7 @@ writeBtn.addEventListener('click', () =>{
         child.className = 'flex-row item-box';
         child.id = `item-box-${logIndex}`
 
-        const logText = createElement(
+        const logText = createAddElement(
                     　child, 
                       `logIndex_${logIndex}`,
                       'list_item', 
@@ -127,7 +127,7 @@ writeBtn.addEventListener('click', () =>{
         `${day.value}日目に<span class='log-font ${people[value1]}'>${people[value1]}</span>と
         <span class='log-font ${people[value2]}'>${people[value2]}</span>が接触。`
 
-        const childDeleteEv = createElement(
+        const childDeleteEv = createAddElement(
                       child, 
                       `delete_${logIndex}`,
                       'delete-item',
@@ -147,7 +147,7 @@ function deleteLog(target){
     target.style.display = 'none';
 }
 
-function createElement(parent, childId, childClass, childTextContent, childDisplayStyle){
+function createAddElement(parent, childId, childClass, childTextContent, childDisplayStyle){
     const child = document.createElement('div'); 
     child.id = childId;
     child.className = childClass;
